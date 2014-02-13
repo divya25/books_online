@@ -1,0 +1,39 @@
+<table>
+  <tr>
+  	<td><%= image_tag show_image_url(@book.id,:small) %>
+	  <% if @user_bookshelf.nil? %>
+	    <%= render :partial => 'books/to_read_form', :locals => {:book => @book} %>
+	  <% end %>
+	</td>
+	<td>
+	  <h2><%= @book.name %></h2>
+	  <span>by <%= link_to h(@book.author.name), @book.author %></span>
+	  <div>Rating : <%= get_avg_rating(@book.id) %></div>
+	  <div><%= @book.description %></div>
+	  <div>Number of pages : <%= @book.number_of_pages %></div>
+	  <div>Published by : <%= @book.publisher.name %></div><br>
+  	</td>
+  </tr>
+</table>
+<% unless @user_bookshelf.nil? %>
+  <h3>My review</h3>
+  <div>Rating : <%= current_user.get_rating(@book.id) || 0 %></div>
+  <% status = current_user.get_bookshelf(@book.id).status %>
+  <div>Bookshelves : <%= link_to status, bookshelves_path(:bookshelf_name => status) %></div><br />
+<%end%>
+<h3>Community Reviews</h3>
+<!--<div style="display:block"><%= render :partial => 'books/review_info', :locals => {:book => @book}  %> -->
+
+ 	<ul class="community_info">
+		<span class="review_list"><a href="#"  >Reviews</a></span>
+		<span class="rating_list"><a href="#"  >Ratings</a></span>
+	</ul>
+
+	<div id="reviews" style="display:block;">
+		<%= render :partial => 'books/review_info', :locals => {:book => @book}  %>
+	</div>
+
+	<div id="ratings" style="display:none;">
+		<%= render :partial => 'books/rating_info', :locals => {:book => @book}  %>
+	</div> 
+

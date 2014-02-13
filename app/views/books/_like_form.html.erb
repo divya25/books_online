@@ -1,0 +1,15 @@
+
+<% logger.info "review :::::::::::: #{review.inspect}"%>
+
+
+  <% if current_user.likes_review?(review.id) %>
+  	<% remote_form_for :like, :url =>current_user.likes.find_by_review_id(review.id), :html => { :method => :delete, :class => "like_review_form" } do |f| %>
+  	  <div><%= f.hidden_field :review_id, :value=>review.id %></div>
+      <%= f.submit "Unlike", :class=>"unlike_button" %>
+   	<%end%> 
+  <%else%>
+  	<% remote_form_for :like, :url =>likes_path, :html => {:class => "unlike_review_form" } do |f| %>
+  	  <div><%= f.hidden_field :review_id, :value=>review.id %></div>
+      <%= f.submit "Like", :class=>"like_button" %>
+   	<%end%>
+  <%end%>

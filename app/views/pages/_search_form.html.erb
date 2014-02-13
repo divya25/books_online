@@ -1,0 +1,12 @@
+<% form_for :search, :url => search_path do |f| %>
+  <%= f.text_field :keyword %>
+  <%= f.submit 'Search' %>
+  <div style="display:block">
+  	<%= f.radio_button :criteria, "all", :checked=> true %>
+  	<%= f.label :criteria_all, "All"%>
+		<%= f.radio_button :criteria, "title" %>
+  	<%= f.label :criteria_title, "Title"%>
+  	<%= f.radio_button :criteria, "author" %>
+  	<%= f.label :criteria_author, "Author"%>
+  </div>
+<%end%>

@@ -1,8 +1,22 @@
 ActionController::Routing::Routes.draw do |map|
+
+  map.resources :users
+  map.resources :sessions, :only => [:create, :destroy]
+  map.resources :books
+  map.resources :author, :only => [:create, :destroy, :show]
+  map.resources :ratings, :only => [:create, :destroy, :show]
+  map.resources :reviews, :only => [:create, :destroy, :show]
+  map.resources :likes, :only => [:create, :destroy, :show]
+  map.resources :bookshelves
+  map.root :controller => 'pages', :action => 'home'
+  map.search '/search', :controller => 'pages', :action => 'search'
+  map.signout '/signout', :controller => 'sessions',:action => 'destroy'
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
-  #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
+  map.avatar 'avatars/:id/:style', :controller => 'users', :action => 'avatars'
+  map.show_image 'show_image/:id/:style', :controller => 'books', :action => 'show_image'
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:

@@ -1,0 +1,16 @@
+<div class = "signup">
+  <% form_for(:sessions, :url => sessions_path) do |f| %>
+
+  <%= f.error_messages %>
+
+  <div class="field">
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.password_field :password %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Sign in" %>
+  </div>
+  <% end %>
+</div>

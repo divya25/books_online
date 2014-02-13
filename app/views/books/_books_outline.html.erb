@@ -1,0 +1,27 @@
+<tr>
+  <td>
+    <%= image_tag show_image_url(book.id,:thumb) %>
+  </td>
+  <td>
+    <div style="display:block">
+      <%= link_to h(book.name), book %>
+    </div>
+    <div style="display:block">
+      By <%= h(book.author.name) %>
+    </div>
+    
+    <% sum = Rating.sum(:Rating, :conditions => ['book_id == :book_id', :book_id => book.id]) %>
+    <% no_of_rating = Rating.count(:Rating, :conditions => ['book_id == :book_id', :book_id => book.id]) %>
+
+    <% if no_of_rating == 0 %>
+      <div style="display:block">Avg.Rating : 0 -- <%= pluralize(no_of_rating, "rating") %></div>
+    <% else %>
+      <div>Avg.Rating : <%= sum/no_of_rating %> -- <%= pluralize(no_of_rating, "rating") %></div>
+    <% end %>
+    
+  </td>
+  <td>
+    <%= render :partial => 'books/to_read_form', :locals => {:book => book} %>
+  </td>
+
+</tr>

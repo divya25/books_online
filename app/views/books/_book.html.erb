@@ -1,0 +1,20 @@
+<tr>
+  <td>
+    <%= image_tag show_image_url(book.id,:thumb) %>
+  </td>
+  <td>
+    <div style="display:block">
+      <%= link_to h(book.name), book %>
+    </div>
+    <div style="display:block">
+      <%= h book.description %>
+    </div><br/>
+    <div style="display:block">
+      Created on <%= book.created_at.strftime("%B %d, %Y") %> 
+    </div>
+  </td>
+  <td>
+    <%= render :partial => 'books/to_read_form', :locals => {:book => book}  if signed_in? && current_user?(@user)%>
+  </td>
+
+</tr>

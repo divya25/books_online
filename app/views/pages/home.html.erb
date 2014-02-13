@@ -1,0 +1,16 @@
+<% if signed_in? %>
+  <p><%= current_user.name %></p>
+  <div>
+  	<table>
+  		<% unless @books.nil? %>
+  			<% @books.each do |book| %>
+            		<%= render :partial => 'books/book', :locals => {:book => book} %>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+<% else %>
+  <div style="display:block"><%= render 'pages/signin_form' %></div>
+  <div style="display:block"><%= render 'pages/signup_form' %></div>
+
+<% end %> 

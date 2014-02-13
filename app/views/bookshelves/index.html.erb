@@ -1,0 +1,47 @@
+<div style="float : left">
+  <%= render :partial => 'bookshelves/bookshelf_menu'%>
+</div>
+
+<div style="float : right">
+  <table>
+    <th>Cover</th>  
+    <th>Title</th>
+    <th>Author</th>
+    <th>Avg Rated</th>
+    <th>Number ratings</th>
+    <th>Rating</th>
+    <th>Shelves</th>
+    <th>Notes</th>
+    <th>Review</th>
+    <th>Read count</th>
+    <th>Number of pages</th>
+
+    <% if @bookslist.empty? %>
+      <tr><td>No matching item!</td></tr>
+      </table>
+    <% else %>
+      <% @bookslist.each do |bookshelf| %>
+      <tr>
+        <% book = get_book_info(bookshelf.book_id ) %>
+        <% unless book.nil? %>
+        <td><%= image_tag show_image_url(book.id,:thumb) %></td>
+        <td><%= link_to h(book.name), book %></td>
+        <td><%=h book.author.name %></td>
+        <td><%= get_avg_rating(book.id) %></td>
+        <td><%= book.ratings.count %></td>
+        <td><%= current_user.get_rating(book.id) || 0 %></td>
+        <td><%=h bookshelf.status || "To Read"%></td>
+        <td><%=h bookshelf.notes || "None" %></td>
+        <td><%=h current_user.get_review(book.id) || "None" %></td>
+        <td><%=h bookshelf.read_count || 0 %></td>
+        <td><%=h bookshelf.book.number_of_pages || 0 %></td>
+        <td><%= link_to "Delete", bookshelf, :method => :delete, :confirm => "Are you sure?" %></td>
+        <%end%>
+      </tr>
+    <%end%>
+    </table>
+    <%end%>
+
+</div>
+
+

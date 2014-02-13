@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  author: MyString
+  publisher: MyString
+  description: MyString
+  category_id: 1
+  number_rated: 1
+  average_rating: 1
+
+two:
+  name: MyString
+  author: MyString
+  publisher: MyString
+  description: MyString
+  category_id: 1
+  number_rated: 1
+  average_rating: 1

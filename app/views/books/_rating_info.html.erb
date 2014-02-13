@@ -1,0 +1,19 @@
+<% ratings = book.get_ratings %>
+
+<table>
+	<% if ratings.empty? %>
+		<tr><td>None</td></tr>
+	<% else %>
+	  <% ratings.each do |rating| %>
+		<tr>
+	  	  <td>
+	  	  	<% user=User.find_by_id(rating.user_id) %>
+	    		<%= link_to user.name, user %> rated it <%= user.get_rating(book.id).Rating %>
+	  	  	<div style="display:block">
+	      	  <%= rating.updated_at.strftime("%B %d, %Y") %> 
+	      	</div>
+	      </td>
+	  	</tr>
+	  <%end%>
+	<%end%>
+</table>

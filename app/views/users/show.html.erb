@@ -1,0 +1,69 @@
+<table>
+	<tr>
+		<td><h2><%=@user.name%>'s Profile</h2></td>
+	</tr>
+	<tr>
+		<td>
+			<% if @user.avatar_file.nil? %>
+				<%= image_tag "default_image.png" %>
+			<% else %>
+				<%= image_tag avatar_url(@user.id,:small) %>
+			<%end%>
+			<h5><%= link_to "Update photo", edit_user_path(@user) %></h5>
+		</td>
+		<td>
+			<h3>Activities</h3>
+			<div> Joined in <%= @user.created_at.strftime("%B %Y") %></div>
+			<div style="display:block">
+				<% sum = Rating.sum(:Rating, :conditions => ['user_id == :user_id', :user_id => @user.id]) %>
+    		<% no_of_rating = Rating.count(:Rating, :conditions => ['user_id == :user_id', :user_id => @user.id]) %>
+
+    		<% if no_of_rating == 0 %>
+      		Avg.Rating : 0 -- <%= pluralize(no_of_rating, "rating") %>
+    		<% else %>
+      		Avg.Rating : <%= sum/no_of_rating %>
+    		<% end %>
+    	</div>
+    	<div style="display:block">
+    		<%= pluralize(no_of_rating, "rating") %>
+    	</div>
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+			<h3>Bookshelves</h3>
+
+		</td>
+	</tr>
+</table>
+<!-- 
+<p>
+  <b>Name:</b>
+  <%=h @user.name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @user.email %>
+</p>
+
+<p>
+  <b>Encrypted password:</b>
+  <%=h @user.encrypted_password %>
+</p>
+
+<p>
+  <b>Admin:</b>
+  <%=h @user.admin %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>  
+
+<% form_for @user, :html => {:multipart => true} do |f| %>
+					<%= f.label :avatar, "Front Page"%> : <%= f.file_field :avatar %></p>
+					<%= f.submit "Save" %>
+				<% end %>
+-->

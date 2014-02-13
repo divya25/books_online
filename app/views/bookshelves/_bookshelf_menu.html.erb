@@ -1,0 +1,6 @@
+<ul style="list-style-type: none; display: block;">
+<li><%= link_to "all(#{@all_books.count})", bookshelves_path(:bookshelf_name => "all") %></li>
+<li><%= link_to "To Read(#{@to_read_books.count})", bookshelves_path(:bookshelf_name => "to_read") %></li>
+<li><%= link_to "Currently Reading(#{@currently_reading_books.count})", bookshelves_path(:bookshelf_name => "currently_reading") %></li>
+<li><%= link_to "Read(#{@read_books.count})", bookshelves_path(:bookshelf_name => "read") %></li>
+

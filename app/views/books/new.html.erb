@@ -1,0 +1,10 @@
+<% form_for @book, :html => {:multipart => true} do |f| %>
+<%= f.label :name %> : <%= f.text_field :name %><br />
+<%= f.label :description %> : <%= f.text_area :description, :rows => 3, :cols => 20, :overflow => "auto" %><br />
+<%= f.label :number_of_pages %> : <%= f.text_field :number_of_pages %><br />
+<%= f.label :category %> : <%= f.collection_select(:category_id, Category.all, :id, :name) %><br />
+<%= f.label :author %> : <%= f.collection_select(:author_id, Author.all, :id, :name) %><br />
+<%= f.label :publisher %> : <%= f.collection_select(:publisher_id, Publisher.all, :id, :name) %><br />
+<%= f.label :avatar, "Front Page"%> : <%= f.file_field :avatar %></p>
+<%= f.submit "Save" %>
+<% end %>

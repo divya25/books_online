@@ -1,0 +1,13 @@
+<h2><%= @author.name %></h2><br />
+<h3>About this author</h3>
+<div><%= @author.description %></div><br /><br />
+<h2><%= @author.name%>'s Books</h2>
+<div>
+	<table>
+		<% unless @author.books.nil? %>
+			<% @author.books.each do |book| %>
+        		<%= render :partial => 'books/books_outline', :locals => {:book => book} %>
+    		<% end %>
+		<% end %>
+	</table>
+</div>

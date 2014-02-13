@@ -1,0 +1,27 @@
+<% reviews = book.get_reviews %>
+
+<table>
+	<% if reviews.empty? %>
+		<tr><td>None</td></tr>
+	<% else %>
+	  <% reviews.each do |review| %>
+		<tr>
+	  	  <td>
+	  	  	<% user=User.find_by_id(review.user_id) %>
+	    	<%= link_to user.name, user %> wrote a review
+	  	  	<div style="display:block">
+	      	  <%= review.review %>
+	      	</div>
+	      	<div style="display:block">
+	      	  Posted <%= time_ago_in_words(review.updated_at) %> ago.
+	      	</div>
+	      	<div style="display:block">
+	      		<div id="like_review_<%=review.id%>">
+	      	  		<%= render :partial => 'books/like_form', :locals => {:review => review} %>
+	      		</div>
+	      	</div>
+	  	  </td>
+	  	</tr>
+	  <%end%>
+	<%end%>
+</table>

@@ -1,0 +1,11 @@
+<div >
+  <% remote_form_for :bookshelf, :url =>bookshelves_path, :before => "var _this=jQuery(this)",:success => "_this.find(':submit').attr('disabled', true)" do |f| %>
+    <%= f.hidden_field :book_id, :value=>book.id %>
+    <% if current_user.has_book?(book) %>
+      <%= f.submit "Want to read", :class=>"read_button_diabled", :disabled => true %>
+    <% else %>
+      <%= f.label book.id %>
+      <%= f.submit "Want to read", :class=>"read_button" %>
+    <% end %>  
+  <% end %>
+</div>

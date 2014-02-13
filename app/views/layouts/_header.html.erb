@@ -1,0 +1,18 @@
+<% if signed_in? %>
+<div id="header" class="round">
+  <ul class="navigation round">
+  	<li><%= render 'pages/search_form' %></li>
+    <li><%= link_to "Home", root_path %></li>
+    <li><%= link_to "My Books", bookshelves_path(:bookshelf_name=>"all") %></li>
+    <li><%= link_to "All Books", books_path %></li>
+    <li><%= link_to "My Friends", '#' %></li>
+    <li><%= link_to "Reccommendation", '#' %></li>
+    <li><%= render 'layouts/user_profile_header' %></li>
+	  <li><%= link_to "Sign out", signout_path, :method => :delete %></li>
+  </ul>
+  <ul class="navigation round">
+    
+  </ul>
+</div>
+
+<% end %>
