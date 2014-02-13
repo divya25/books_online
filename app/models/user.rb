@@ -34,6 +34,9 @@ class User < ActiveRecord::Base
     save_without_validation
   end
   
+  def is_admin?
+    admin
+  end
 
   def has_book?(book)
     bookshelves.find_by_book_id(book.id)

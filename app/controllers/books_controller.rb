@@ -20,6 +20,15 @@ class BooksController < ApplicationController
 		Rails.logger.debug("########## #{@book.id}")
 	end
 
+	def destroy
+    Rails.logger.debug("=========== #{session[:return_to]}")
+    @book = Book.find(params[:id])
+    @book.destroy
+    Rails.logger.debug("=========== #{session[:return_to]}")
+
+    redirect_to books_path
+  end
+
 	def show_image
       book = Book.find(params[:id])
       style = params[:style] ? params[:style] : :original

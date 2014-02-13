@@ -14,7 +14,12 @@
     </div>
   </td>
   <td>
-    <%= render :partial => 'books/to_read_form', :locals => {:book => book}  if signed_in? && current_user?(@user)%>
+    <%= render :partial => 'books/to_read_form', :locals => {:book => book}  if signed_in? %>
   </td>
+  <% if current_user.is_admin? %>
+    <td>
+      <%= link_to "Delete", book, :method => :delete, :confirm => "Are you sure?" %>
+    </td>
+  <%end%>
 
 </tr>
